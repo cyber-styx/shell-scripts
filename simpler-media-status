@@ -1,0 +1,37 @@
+#!/bin/bash
+# none of the built-in or community made media scripts
+# seem to work for me with firefox & youtube music so I made this one 
+# definitely not a programmer/coder/etc so use at your own risk
+# requires mpris-ctl & playerctl
+
+status=`mpris-ctl status`
+artist=`mpris-ctl info %artist_name`
+song=`mpris-ctl info %track_name`
+
+# set some variables above ^
+
+if [[ $(playerctl status 2>&1) = "No players found" ]]
+then
+echo "shhh... " && exit 3
+fi
+
+# if this ^ isn't here, playerctl won't be quiet
+# found the suggestion to use the above workaround here:
+# https://github.com/altdesktop/playerctl/issues/119#issuecomment-456558968
+
+status2=`playerctl status 3> /dev/null`
+
+# if this variable isn't set after the first if
+# statement it breaks the script, I assume it
+# depends on it but I'm running on 3 hours of sleep
+# so who knows what's happening here 
+
+if [[ "$status2" = "Playing" ]]
+then
+    printf "$artist %s- $song \n"
+elif [[ "$status2" != "Playing" ]]
+then
+    echo "paused"
+else
+    :
+fi
