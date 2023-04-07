@@ -12,7 +12,10 @@ song=`mpris-ctl info %track_name`
 
 if [[ $(playerctl status 2>&1) = "No players found" ]]
 then
-echo "shhh... " && exit 3
+# echo "shhh... " && 
+# removed because it's not constant so now it just displays nothing if
+# nothing is playing
+exit 3
 fi
 
 # if this ^ isn't here, playerctl won't be quiet
