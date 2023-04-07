@@ -6,6 +6,10 @@ it' s just a script to output the artist & song title of whatever
 music is playing / the phrase "paused" if paused / "shhh.." if nothing
 is playing.
 
+EDIT: the "shhh.." message was an issue so now it displays nothing
+if nothings playing. Tbh that's probably better since it means 
+more space in polybar/i3blocks.
+
 Works with Youtube music on Firefox, and in theory should work with
 any media picked up by playerctl/mpris-ctl. 
 
